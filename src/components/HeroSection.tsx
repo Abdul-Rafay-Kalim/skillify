@@ -59,14 +59,14 @@ const HeroSection = () => {
             </p>
             <div className="flex flex-wrap gap-4 pt-2 opacity-0 animate-fade-in" style={{ animationDelay: "0.5s" }}>
               <a
-                href="#"
+                href="/explore"
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-full text-sm font-medium hover:shadow-lg hover:scale-105 transition-all"
               >
                 Explore Collection
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="/artists"
                 className="inline-flex items-center gap-2 border-2 border-gray-300 text-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors"
               >
                 Discover Artists

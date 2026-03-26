@@ -57,16 +57,16 @@ const Contact = () => {
 
           {/* social icons section; update hrefs later */}
           <div className="mt-8 flex justify-center gap-6">
-            <a href="#" aria-label="Instagram">
+            <a href="https://instagram.com/artify" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <Instagram className="w-6 h-6 hover:opacity-80" />
             </a>
-            <a href="https://www.facebook.com/share/1B5Zvk4U1y/" aria-label="Facebook">
+            <a href="https://www.facebook.com/artify" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
               <Facebook className="w-6 h-6 hover:opacity-80" />
             </a>
-            <a href="#" aria-label="YouTube">
+            <a href="https://youtube.com/artify" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
               <Youtube className="w-6 h-6 hover:opacity-80" />
             </a>
-            <a href="#" aria-label="LinkedIn">
+            <a href="https://linkedin.com/company/artify" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
               <Linkedin className="w-6 h-6 hover:opacity-80" />
             </a>
           </div>

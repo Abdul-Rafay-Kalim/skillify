@@ -50,11 +50,11 @@ const Navbar = () => {
     <header
       className={`fixed top-4 left-4 right-4 z-50 transition-all duration-500 rounded-full ${
         scrolled
-          ? "bg-foreground/95 backdrop-blur-md shadow-lg"
-          : "bg-foreground/90 backdrop-blur-sm"
+          ? "bg-foreground/40 backdrop-blur-2xl shadow-lg"
+          : "bg-foreground/35 backdrop-blur-xl"
       }`}
     >
-      <div className="flex items-center justify-between py-3 px-6 md:px-8">
+      <div className="flex items-center justify-between py-3 px-10 md:px-10 lg:px-8 max-w-8xl mx-auto">
         <Link to="/" className="font-serif text-xl font-bold tracking-tight text-background">
           ARTIFY
         </Link>

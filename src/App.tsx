@@ -15,6 +15,7 @@ import Checkout from "./pages/Checkout";
 import Artists from "./pages/Artists";
 import ArtistProfile from "./pages/ArtistProfile";
 import SellArt from "./pages/SellArt";
+import Messages from "./pages/Messages";
 import NotFound from "./pages/NotFound";
 import Contact from "./pages/Contact";
 import Returns from "./pages/Returns";
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/artists" element={<Artists />} />
             <Route path="/artist/:id" element={<ArtistProfile />} />
             <Route path="/sell" element={<SellArt />} />
+            <Route path="/messages" element={<Messages />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/returns" element={<Returns />} />
             <Route path="/about" element={<About />} />

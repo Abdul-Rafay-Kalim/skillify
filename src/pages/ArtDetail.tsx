@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ArrowLeft, ShoppingCart, Share2, Palette } from "lucide-react";
+import { ArrowLeft, ShoppingCart, Share2, Palette, MessageCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { artworks } from "@/data/artworks";
 import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/hooks/use-auth";
 import { supabase } from "@/integrations/supabase/client";
 
 interface ArtworkData {
@@ -22,15 +23,64 @@ interface ArtworkData {
   dimensions: string;
   year: number;
   description: string;
+  seller_id?: string;
 }
 
 const ArtDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { addToCart, removeFromCart, isInCart } = useCart();
+  const { user } = useAuth();
   const [artwork, setArtwork] = useState<ArtworkData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [chattingWith, setChattingWith] = useState<string | null>(null);
   const isListed = id?.startsWith("listed-");
+
+  const handleChatWithSeller = async () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+
+    if (!artwork) return;
+
+    try {
+      // Check if conversation already exists
+      const { data: existingConv, error: fetchError } = await supabase
+        .from("conversations")
+        .select("id")
+        .eq("artwork_id", artwork.id)
+        .eq("buyer_id", user.id)
+        .eq("seller_id", chattingWith!)
+        .single();
+
+      if (existingConv && !fetchError) {
+        // Conversation exists, navigate to messages
+        navigate("/messages");
+        return;
+      }
+
+      // Create new conversation
+      const { data: newConv, error: createError } = await supabase
+        .from("conversations")
+        .insert({
+          artwork_id: artwork.id,
+          buyer_id: user.id,
+          seller_id: chattingWith,
+        })
+        .select()
+        .single();
+
+      if (createError && createError.code !== "23505") {
+        // 23505 is unique violation, meaning conversation already exists
+        throw createError;
+      }
+
+      navigate("/messages");
+    } catch (error) {
+      console.error("Error starting conversation:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchArtwork = async () => {
@@ -43,7 +93,7 @@ const ArtDetail = () => {
           .single();
         if (data) {
           const d = data as any;
-          setArtwork({
+          const artwork = {
             id: `listed-${d.id}`,
             image: d.image_url || "",
             title: d.title,
@@ -54,11 +104,19 @@ const ArtDetail = () => {
             dimensions: d.dimensions || "",
             year: d.year || new Date().getFullYear(),
             description: d.description || "",
-          });
+            seller_id: d.seller_id || "",
+          };
+          setArtwork(artwork);
+          setChattingWith(artwork.seller_id || null);
         }
       } else {
         const found = artworks.find((a) => a.id === id);
-        if (found) setArtwork(found);
+        if (found) {
+          // For mock artworks, create a stable seller ID based on artist name
+          const sellerId = `artist-${found.id}`;
+          setArtwork({ ...found, seller_id: sellerId });
+          setChattingWith(sellerId);
+        }
       }
       setLoading(false);
     };
@@ -160,8 +218,22 @@ const ArtDetail = () => {
                   <ShoppingCart className="w-4 h-4" />
                   {isInCart(artwork.id) ? "Remove from Cart" : "Add to Cart"}
                 </Button>
-                <Button variant="outline" size="icon" aria-label="Share">
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  aria-label="Share"
+                  title="Share"
+                >
                   <Share2 className="w-4 h-4" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  aria-label="Chat with seller"
+                  title="Chat with seller"
+                  onClick={handleChatWithSeller}
+                >
+                  <MessageCircle className="w-4 h-4" />
                 </Button>
               </div>
             </div>

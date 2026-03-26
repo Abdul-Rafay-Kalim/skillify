@@ -35,24 +35,24 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4 opacity-100">Explore</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:opacity-100 transition-opacity">New Arrivals</a></li>
-              <li><a href="#" className="hover:opacity-100 transition-opacity">Collections</a></li>
-              <li><a href="#" className="hover:opacity-100 transition-opacity">Artists</a></li>
+              <li><a href="/explore" className="hover:opacity-100 transition-opacity">New Arrivals</a></li>
+              <li><a href="/explore" className="hover:opacity-100 transition-opacity">Collections</a></li>
+              <li><a href="/artists" className="hover:opacity-100 transition-opacity">Artists</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4 opacity-100">For Artists</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:opacity-100 transition-opacity">Sell Your Work</a></li>
-              <li><a href="#" className="hover:opacity-100 transition-opacity">Artist Resources</a></li>
-              <li><a href="#" className="hover:opacity-100 transition-opacity">Success Stories</a></li>
+              <li><a href="/sell" className="hover:opacity-100 transition-opacity">Sell Your Work</a></li>
+              <li><a href="/sell" className="hover:opacity-100 transition-opacity">Artist Resources</a></li>
+              <li><a href="/sell" className="hover:opacity-100 transition-opacity">Success Stories</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4 opacity-100">Support</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="hover:opacity-100 transition-opacity">Help Center</a></li>
-              <li><a href="#" className="hover:opacity-100 transition-opacity">Shipping Info</a></li>
+              <li><a href="/about" className="hover:opacity-100 transition-opacity">Help Center</a></li>
+              <li><a href="/about" className="hover:opacity-100 transition-opacity">Shipping Info</a></li>
               <li><Link to="/returns" className="hover:opacity-100 transition-opacity">Returns</Link></li>
             </ul>
           </div>

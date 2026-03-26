@@ -39,7 +39,9 @@ const FeaturesSection = () => {
               className={`flex flex-col items-center text-center bg-card border border-border rounded-2xl hover:shadow-lg transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
               style={{ transitionDelay: isVisible ? `${(i + 1) * 150}ms` : "0ms" }}
             >
-              <img src={f.image} alt={f.title} className="w-full h-64 object-cover" />
+              <div className="w-[348px] h-[348px] overflow-hidden rounded-t-2xl">
+                <img src={f.image} alt={f.title} className="w-full h-full object-cover" />
+              </div>
               <div className="p-8">
                 <h3 className="font-serif text-xl font-semibold mb-3 text-foreground">{f.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{f.description}</p>

@@ -63,7 +63,7 @@ const ArtistsSection = () => {
           style={{ transitionDelay: isVisible ? "600ms" : "0ms" }}
         >
           <a
-            href="#"
+            href="/artists"
             className="inline-flex items-center gap-2 border border-border text-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-secondary transition-colors"
           >
             Browse All Artists

@@ -24,7 +24,7 @@ const ShareWorkSection = () => {
             Join a community of artists who sell directly to passionate collectors. No middlemen, no gatekeepers.
           </p>
           <a
-            href="#"
+            href="/sell"
             className="inline-flex items-center gap-2 border border-current px-6 py-3 rounded-full text-sm font-medium hover:bg-section-dark-foreground hover:text-section-dark transition-colors"
           >
             Apply as an Artist
