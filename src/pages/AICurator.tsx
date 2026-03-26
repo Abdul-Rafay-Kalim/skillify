@@ -171,7 +171,7 @@ const AICurator = () => {
       </div>
 
       {/* Input */}
-      <div className="border-t border-border bg-background sticky bottom-0">
+      <div className="bg-background sticky bottom-0">
         <div className="container mx-auto max-w-3xl px-4 py-4">
           <form
             onSubmit={(e) => { e.preventDefault(); sendMessage(); }}

@@ -50,7 +50,113 @@ export type Database = {
         }
         Relationships: []
       }
+      conversations: {
+        Row: {
+          artwork_id: string
+          buyer_id: string
+          created_at: string
+          id: string
+          seller_id: string
+          updated_at: string
+        }
+        Insert: {
+          artwork_id: string
+          buyer_id: string
+          created_at?: string
+          id?: string
+          seller_id: string
+          updated_at?: string
+        }
+        Update: {
+          artwork_id?: string
+          buyer_id?: string
+          created_at?: string
+          id?: string
+          seller_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       listed_artworks: {
+        Row: {
+          artist_name: string
+          created_at: string
+          description: string | null
+          dimensions: string | null
+          genre: string | null
+          id: string
+          image_url: string | null
+          medium: string | null
+          price: number
+          seller_id: string
+          title: string
+          updated_at: string
+          year: number | null
+        }
+        Insert: {
+          artist_name: string
+          created_at?: string
+          description?: string | null
+          dimensions?: string | null
+          genre?: string | null
+          id?: string
+          image_url?: string | null
+          medium?: string | null
+          price: number
+          seller_id: string
+          title: string
+          updated_at?: string
+          year?: number | null
+        }
+        Update: {
+          artist_name?: string
+          created_at?: string
+          description?: string | null
+          dimensions?: string | null
+          genre?: string | null
+          id?: string
+          image_url?: string | null
+          medium?: string | null
+          price?: number
+          seller_id?: string
+          title?: string
+          updated_at?: string
+          year?: number | null
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          sender_id: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          sender_id: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          sender_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
         Row: {
           artist_name: string
           created_at: string
