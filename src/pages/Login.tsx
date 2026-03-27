@@ -21,6 +21,9 @@ const Login = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  const baseUrl = import.meta.env.VITE_EMAIL_REDIRECT_URL || "https://skillify-eosin.vercel.app/";
+  const redirectUrl = `${baseUrl}auth/callback`;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -36,7 +39,7 @@ const Login = () => {
           email,
           password,
           options: {
-            emailRedirectTo: window.location.origin,
+            emailRedirectTo: redirectUrl,
             data: { role, first_name: firstName, last_name: lastName },
           },
         });
